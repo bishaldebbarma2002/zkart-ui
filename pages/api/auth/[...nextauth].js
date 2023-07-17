@@ -41,7 +41,6 @@ const credentialsOptions = {
 };
 
 const authOptions = {
-  secret: process.env.SECRET,
   providers: [
     CredentialsProvider(credentialsOptions),
     GoogleProvider({
