@@ -13,6 +13,7 @@ import Spinner from "@/components/Spinner";
 import ProductBox from "@/components/ProductBox";
 import Tabs from "@/components/Tabs";
 import SingleOrder from "@/components/SingleOrder";
+import { useRouter } from "next/router";
 
 const ColsWrapper = styled.div`
   display: grid;
@@ -54,6 +55,7 @@ export default function AccountPage() {
   const [wishedProducts, setWishedProducts] = useState([]);
   const [activeTab, setActiveTab] = useState(session ? 'Account' : 'Login');
   const [orders, setOrders] = useState([]);
+  const router = useRouter();
 
   async function logout() {
     await signOut({
@@ -196,7 +198,10 @@ export default function AccountPage() {
                   <>
                    <p>Login to See your Account details</p>
                              
-                    <Button primary onClick={login}>Login</Button>
+                   <Button primary onClick={() => router.push("/login")}>
+  Login
+</Button>
+
                   </>
                 )}
               </WhiteBox>
