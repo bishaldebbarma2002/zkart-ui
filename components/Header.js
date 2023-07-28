@@ -55,24 +55,35 @@ const NavLink = styled(Link)`
   min-width: 30px;
   padding: 10px 0;
   position: relative;
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #fff;
-    transition: width 0.3s;
-  }
-  &:hover:before {
-    width: 100%;
-  }
   svg {
     height: 20px;
   }
+
   @media screen and (min-width: 768px) {
     padding: 0;
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #fff;
+      transition: width 0.3s;
+    }
+    &:hover:before {
+      width: 100%;
+    }
+  }
+
+  /* Hover effect for touch devices (mobile) */
+  @media (hover: none) {
+    &:before {
+      width: 0;
+    }
+    &:active:before {
+      width: 100%;
+    }
   }
 `;
 const NavButton = styled.button`
