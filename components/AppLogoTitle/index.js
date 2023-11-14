@@ -5,7 +5,7 @@ import LogoImgSrc from "../../public/assets/images/logo.png";
 const AppLogoTitle = (props) => {
   return (
     <Container href="/">
-      <AppTitle> E-Commerce </AppTitle>
+      <AppTitle> ZKART </AppTitle>
       <LogoImage src={LogoImgSrc} alt="logo" />
     </Container>
   );

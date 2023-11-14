@@ -5,16 +5,12 @@ import {CartContext} from "@/components/CartContext";
 import {useContext, useEffect, useRef, useState} from "react";
 
 const FlyingButtonWrapper = styled.div`
-  button{
-    ${ButtonStyle};
-    ${props => props.main ? `
-      background-color: ${primary};
-      color:white;
-    ` : `
-      background-color: transparent;
-      border: 1px solid ${primary};
-      color:${primary};
-    `}
+button {
+  ${ButtonStyle};
+  background-color: rgb(255, 144, 0);
+  border: -1px solid rgb(222, 255, 85);
+  color: rgb(0, 0, 0);
+}
     ${props => props.white && `
       background-color: white;
       border: 1px solid white;

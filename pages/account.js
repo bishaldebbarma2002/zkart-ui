@@ -133,9 +133,19 @@ export default function AccountPage() {
                             {session && <p>Your Orders is empty</p>}
                           </>
                         )}
-                        {orders.length > 0 && orders.map(o => (
-                          <SingleOrder key={o._id} {...o} />
-                        ))}
+                        {orders.length > 0 &&
+                          orders.map((o) => {
+                            console.log("Order:", o); // Add this console.log statement
+                            return (
+                              <SingleOrder
+                                key={o._id}
+                                line_items={o.line_items}
+                                createdAt={o.createdAt}
+                                status={o.status} // Include the 'status' field here
+                                {...o}
+                              />
+                            );
+                          })}
                       </div>
                     )}
                   </>

@@ -3,19 +3,24 @@ import styled from "styled-components";
 import Center from "@/components/Center";
 import { useContext, useState } from "react";
 import { CartContext } from "@/components/CartContext";
+import CartIcon from "@/components/icons/CartIcon";
 import BarsIcon from "@/components/icons/Bars";
 import SearchIcon from "@/components/icons/SearchIcon";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Head from 'next/head';
 
 const StyledHeader = styled.header`
-  background-color: #222;
+  background-color: rgb(12 11 11);
   position: sticky;
+  height: 90px;
   top: 0;
   z-index: 10;
 `;
-const Logo = styled(Link)`
-  color: #fff;
+const Logo = styled.a`
+  font-family: 'Pacifico', cursive; /* Apply the custom font */
+  color: white;
+  font-size: 32px; /* Increase font size for emphasis */
   text-decoration: none;
   position: relative;
   z-index: 3;
@@ -23,7 +28,7 @@ const Logo = styled(Link)`
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 1px 0;
 `;
 const StyledNav = styled.nav`
   ${props =>
@@ -41,7 +46,8 @@ const StyledNav = styled.nav`
   left: 0;
   right: 0;
   padding: 70px 20px 20px;
-  background-color: #222;
+  background-color: rgb(12 11 11);
+  margin: 15px;
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
@@ -50,46 +56,31 @@ const StyledNav = styled.nav`
 `;
 const NavLink = styled(Link)`
   display: block;
-  color: #aaa;
+  color: white;
+  font-size: 20px;
   text-decoration: none;
   min-width: 30px;
   padding: 10px 0;
-  position: relative;
   svg {
     height: 20px;
   }
-
   @media screen and (min-width: 768px) {
     padding: 0;
-    &:before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: #fff;
-      transition: width 0.3s;
-    }
-    &:hover:before {
-      width: 100%;
-    }
   }
-
-  /* Hover effect for touch devices (mobile) */
-  @media (hover: none) {
-    &:before {
-      width: 0;
-    }
-    &:active:before {
-      width: 100%;
-    }
+  &:hover {
+    color: white;
+    border-bottom: 2px solid white;
+  }
+  &.active {
+    color: black;
+    font-weight: bold;
+    border-bottom: 2px solid black;
   }
 `;
 const NavButton = styled.button`
   background-color: transparent;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: 0;
   color: white;
   cursor: pointer;
@@ -105,12 +96,29 @@ const SideIcons = styled.div`
   a {
     display: inline-block;
     min-width: 20px;
+
     color: white;
     svg {
-      width: 14px;
-      height: 14px;
+      width: 20px;
+      height: 20px;
     }
   }
+`;
+
+const CartCount = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 12px;
+`;
+
+const CartContainer = styled.div`
+  position: relative;
+  margin:15px;
 `;
 
 export default function Header() {
@@ -126,9 +134,12 @@ export default function Header() {
 
   return (
     <StyledHeader>
+    <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    </Head>
       <Center>
         <Wrapper>
-          <Logo href="/">Ecommerce</Logo>
+          <Logo href="/">Z-Kart</Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/products">All products</NavLink>
@@ -140,12 +151,17 @@ export default function Header() {
               <NavLink href="/login">Login</NavLink>
             )}
           </StyledNav>
-          <NavLink href="/cart">Cart ({cartProducts.length})</NavLink>
+          <CartContainer>
+            <NavLink href="/cart">
+              <CartIcon />
+              {cartProducts.length > 0 && <CartCount>{cartProducts.length}</CartCount>}
+            </NavLink>
+          </CartContainer>
           <SideIcons>
             <Link href="/search">
               <SearchIcon />
             </Link>
-            <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
+            <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
               <BarsIcon />
             </NavButton>
           </SideIcons>

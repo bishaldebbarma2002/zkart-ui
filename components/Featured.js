@@ -6,9 +6,9 @@ import FlyingButton from "@/components/FlyingButton";
 import { RevealWrapper } from "next-reveal";
 
 const Bg = styled.div`
-  background-color: #222;
+  background-color: rgb(12, 40, 67);
   color: #fff;
-  padding: 50px 0;
+  padding: 5px 0;
 `;
 
 const Title = styled.h1`
@@ -35,6 +35,11 @@ const ColumnsWrapper = styled.div`
     max-height: 200px;
     display: block;
     margin: 0 auto;
+
+    /* Glowing effect */
+    box-shadow: 0 0 20px 0 #0ef;
+    outline: 1px solid #0ef;
+    border-radius: 10px; /* Adjust the border radius as needed */
   }
 
   div:nth-child(1) {
@@ -77,6 +82,18 @@ const CenterImg = styled.div`
 const ImgColumn = styled(Column)`
   & > div {
     width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  img.main {
+    max-width: 100%;
+    max-height: 150px;
+    display: block;
+    margin: 50px auto;
+    box-shadow: #9d9fceab 0px 0px 23px 32px;
+    outline: rgb(0, 238, 255) solid 1px;
+    border-radius: -1px;
   }
 `;
 

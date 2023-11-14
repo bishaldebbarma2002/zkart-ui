@@ -26,11 +26,18 @@ const Address = styled.div`
   color: #888;
 `;
 
-export default function SingleOrder({ line_items, createdAt, ...rest }) {
+const Status = styled.div`
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: ${({ statusColor }) => statusColor || "#555"};
+`;
+
+export default function SingleOrder({ line_items, createdAt, status, ...rest }) {
   return (
     <StyledOrder>
       <div>
         <time>{new Date(createdAt).toLocaleString("sv-SE")}</time>
+        <Status>{/* You can use your getStatusColor function here if needed */}Status: {status}</Status>
         <Address>
           {rest.name}
           <br />
@@ -43,7 +50,7 @@ export default function SingleOrder({ line_items, createdAt, ...rest }) {
       </div>
       <div>
         {line_items.map((item) => (
-          <ProductRow key={item.id}> {/* Add key prop */}
+          <ProductRow key={item.id}>
             <span>{item.quantity} x </span>
             {item.price_data.product_data.name}
           </ProductRow>
