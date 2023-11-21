@@ -34,7 +34,7 @@ const AboutUsPrivacyPolicyPage = () => {
 
         Thank you for entrusting Zkart with your personal information. We are dedicated to protecting your privacy and providing you with a secure online experience.
 
-        Last Updated: [Insert Date]
+        Last Updated: 21-11-2023
     `;
 
     return (
