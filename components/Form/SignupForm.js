@@ -67,7 +67,7 @@ const SignupForm = () => {
       try {
         setLoading(true);
         const apiRes = await axios.post(
-          "http://localhost:4000/api/auth/signup",
+          "https://zkart-ui.vercel.app/api/auth/signup",
           data
         );
 
